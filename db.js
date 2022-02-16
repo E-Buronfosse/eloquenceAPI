@@ -1,12 +1,17 @@
+const { MongoClient } = require("mongodb");
+
 module.exports = {
-    db: function() { 
-        var MongoClient = require('mongodb').MongoClient;
-        var url = "mongodb://localhost:27017/eloquence";
-        
-        MongoClient.connect(url, function(err, db) {
-        if (err) throw err;
-        console.log("Database created!");
-        return db;
-        }
-    )}
-}
+  connection: async function () {
+    const client = new MongoClient(uriDatabase);
+
+    try {
+      // Connect to the MongoDB cluster
+      await client.connect();
+      // Make the appropriate DB calls
+    } catch (e) {
+      console.error(e);
+    } finally {
+      await client.close();
+    }
+  },
+};
