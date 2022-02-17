@@ -1,17 +1,17 @@
-const { MongoClient } = require("mongodb");
+const mongoose = require("mongoose");
 
-module.exports = {
-  connection: async function () {
-    const client = new MongoClient(uriDatabase);
+const clientOptions = {
+  useNewUrlParser: true,
+  dbName: "eloquence",
+};
 
-    try {
-      // Connect to the MongoDB cluster
-      await client.connect();
-      // Make the appropriate DB calls
-    } catch (e) {
-      console.error(e);
-    } finally {
-      await client.close();
-    }
-  },
+exports.initClientDbConnection = async () => {
+  try {
+    console.log("db URL", process.env.URL_MONGO);
+    await mongoose.connect(process.env.URL_MONGO, clientOptions);
+    console.log("Connected");
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
 };

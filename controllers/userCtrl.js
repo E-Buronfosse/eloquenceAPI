@@ -1,15 +1,32 @@
-module.exports = {
-    signup: function(req, res) {
-        const email = req.body.email
-        const password = req.body.password
-        const confirmPassword = req.body.confirmPassword
+const userModel = require("../models/userModel").userModel;
 
-        if (email == "" || password == "" || confirmPassword == "") {
-            return res.status(400).json({ 'error': 'Missingparameters'});
-        }
+exports.add = async (req, res, next) => {
+  const { email, password } = req.body;
+  console.log({ email, password });
 
-        if (password != confirmPassword) {
-            return res.status(400).json({ 'error': 'Non identical passwords'});
-        }
+  try {
+    const user = await userModel.create({ email, password });
+    console.log("usser", user);
+
+    return res.status(201).json(user);
+  } catch (error) {
+    console.log("error", error);
+    return res.status(501).json(error);
+  }
+};
+
+exports.getById = async (req, res, next) => {
+  const { email } = req.params;
+
+  try {
+    const user = await userModel.findById(email);
+
+    if (user) {
+      return res.status(200).json(user);
     }
-}
+
+    return res.status(404).json("user_not_found");
+  } catch (error) {
+    return res.status(501).json(error);
+  }
+};
