@@ -1,11 +1,27 @@
-module.exports = {
-    db: function() { 
-        let MongoClient = require('mongodb').MongoClient;
-        let url = "mongodb://localhost:27017/eloquence";
+const {MongoClient} = require("mongodb");
 
-        MongoClient.connect(url, function(err, db) {
-            if (err) throw err;
-            console.log("Database created!");
-        })
+class Db {
+    static database;
+    static client;
+
+    static async setUp(uri) {
+        if(!this.client) {
+            await this.setClient(uri);
+            await this.setConnection();
+        }
+        return this.database;
+    }
+
+    static async setConnection() {
+        this.database = this.client.db("eloquence");
+    }
+
+    static async setClient(uri) {
+        console.log("Connecting to database");
+        const client = new MongoClient(uri);
+        await client.connect();
+        this.client = client;
     }
 }
+
+module.exports = Db;
