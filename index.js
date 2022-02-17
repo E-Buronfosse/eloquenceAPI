@@ -11,6 +11,7 @@ const { urlencoded } = require('express')
 
 let database = db.db()
 
+console.log(database);
 database.close()
 
 app.use(cors())
@@ -23,7 +24,7 @@ app.get('/', (req, res) => {
 })
 
 app.post('/users/signup', (req, res) => {
-    let result = userCtrl.signup(req, res)
+    userCtrl.signup(req, res)
 })
 
 app.listen(port, () => {
