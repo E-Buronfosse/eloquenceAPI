@@ -17,8 +17,13 @@
   },
   "homepage": "https://github.com/E-Buronfosse/eloquenceAPI#readme",
   "dependencies": {
+    "bcrypt": "^5.0.1",
+    "cookie": "^0.4.2",
+    "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "express": "^4.17.2",
-    "mongodb": "^4.3.1"
+    "jsonwebtoken": "^8.5.1",
+    "mongodb": "^4.3.1",
+    "parser": "^0.1.4"
   }
 }
