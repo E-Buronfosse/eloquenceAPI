@@ -9,10 +9,10 @@ dotenv();
 const port = process.env.PORT || 3000;
 const db = require("./db");
 const cors = require("cors");
-const userCtrl = require("./controllers/userCtrl");
-var bodyParser = require("body-parser");
+const bodyParser = require("body-parser");
 const { urlencoded } = require("express");
 const globales = require("./globales");
+const userCtrl = require("./controllers/userCtrl");
 
 app.use(cors());
 
@@ -27,12 +27,24 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-app.get("/users/signup", (req, res) => {
+app.get("/users", (req, res) => {
+  userCtrl.getAllUsers(req, res);
+});
+
+app.get("/users/:id", (req, res) => {
   userCtrl.getById(req, res);
 });
 
 app.post("/users/signup", (req, res) => {
   userCtrl.add(req, res);
+});
+
+app.put("/users/:id", (req, res) => {
+  userCtrl.update(req, res);
+});
+
+app.delete("/users/:id", (req, res) => {
+  userCtrl.delete(req, res);
 });
 
 app.listen(port, () => {
