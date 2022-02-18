@@ -1,7 +1,6 @@
 const { MongoClient } = require("mongodb");
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const cookieParser = require("cookie-parser");
 const saltRounds = 8;
 
 
@@ -56,10 +55,8 @@ module.exports = {
                 '4E8CE938D1B11E5DCFC3717DC37FC',
                 { expiresIn: '24h' }
             );
+            global.userToken = token;
             res.json({ 'auth': token });
-            // res.header('Access-Control-Allow-Credentials', true);
-            // res.header('Access-Control-Allow-Origin', '*')
-            // res.cookie('auth', token);
             res.send();
         })
 
