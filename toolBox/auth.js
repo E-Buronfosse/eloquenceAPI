@@ -7,8 +7,8 @@ module.exports = {
         if (!token) {
             return false;
         }
-
-        if (global.userToken != token) {
+        console.log(jwt.verify(token, '4E8CE938D1B11E5DCFC3717DC37FC'));
+        if (!jwt.verify(token, '4E8CE938D1B11E5DCFC3717DC37FC')) {
             return false;
         }
         return true;

@@ -7,7 +7,6 @@ const { urlencoded } = require("express");
 require("./toolBox/auth");
 require("./globales");
 const userCtrl = require("./controllers/userCtrl");
-const cookieParser = require("cookie-parser");
 const auth = require("./toolBox/auth");
 
 app.use(cors({
@@ -15,7 +14,6 @@ app.use(cors({
 }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(cookieParser());
 
 app.get('/', (req, res) => {
   res.send("Hello World!");
@@ -26,7 +24,7 @@ app.get('/users/tokenTest', (req, res) => {
   console.log("token envoyé : " +  req.get('authorization'));
   console.log("token server : " +  global.userToken);
   if (!hasValidToken) {
-    return res.status(401).json({ 'error': 'pas de token' });
+    return res.status(401).json({ 'error': 'token invalide' });
   }
   console.log(req.get('authorization'));
 });
