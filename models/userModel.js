@@ -5,8 +5,8 @@ const bcrypt = require("bcryptjs");
 const UserSchema = new Schema(
   {
     email: String,
-    password: String,
-    confirmePassword: String,
+    // password: String,
+    // confirmePassword: String,
   },
   {
     timestamps: true, // ajoute 2 champs au document createdAt et updatedAt

@@ -23,10 +23,6 @@ db.initClientDbConnection();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
-
 app.get("/users", (req, res) => {
   userCtrl.getAllUsers(req, res);
 });
