@@ -592,6 +592,13 @@
   "resolved" "https://registry.npmjs.org/mkdirp/-/mkdirp-1.0.4.tgz"
   "version" "1.0.4"
 
+"mongo@^0.1.0":
+  "integrity" "sha1-yK8PjfmNSJS3crNzQph8O+zzcYw="
+  "resolved" "https://registry.npmjs.org/mongo/-/mongo-0.1.0.tgz"
+  "version" "0.1.0"
+  dependencies:
+    "mongodb" "*"
+
 "mongodb-connection-string-url@^2.4.1":
   "integrity" "sha512-mZUXF6nUzRWk5J3h41MsPv13ukWlH4jOMSk6astVeoZ1EbdTJyF5I3wxKkvqBAOoVtzLgyEYUvDjrGdcPlKjAw=="
   "resolved" "https://registry.npmjs.org/mongodb-connection-string-url/-/mongodb-connection-string-url-2.4.2.tgz"
@@ -600,10 +607,10 @@
     "@types/whatwg-url" "^8.2.1"
     "whatwg-url" "^11.0.0"
 
-"mongodb@^4.3.1":
-  "integrity" "sha512-sNa8APSIk+r4x31ZwctKjuPSaeKuvUeNb/fu/3B6dRM02HpEgig7hTHM8A/PJQTlxuC/KFWlDlQjhsk/S43tBg=="
-  "resolved" "https://registry.npmjs.org/mongodb/-/mongodb-4.3.1.tgz"
-  "version" "4.3.1"
+"mongodb@*", "mongodb@^4.4.0":
+  "integrity" "sha512-1hPhutJj6yxxu0ymwsO0uEimTo+QTh3oQP6YHxmLneBFBOGydYFdnmDDuLiGWimAlMdRN9WuDXY+JGp47aeOwA=="
+  "resolved" "https://registry.npmjs.org/mongodb/-/mongodb-4.4.0.tgz"
+  "version" "4.4.0"
   dependencies:
     "bson" "^4.6.1"
     "denque" "^2.0.1"
