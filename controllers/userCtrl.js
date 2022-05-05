@@ -11,7 +11,7 @@ module.exports = {
         const confirmPassword = req.body.confirmPassword
 
         if (email == "" || password == "" || confirmPassword == "") {
-            return res.status(400).json({ 'error': 'Missingparameters'});
+            return res.status(400).json({ 'error': 'Missingparameters' });
         }
 
         // if (password != confirmPassword) {
@@ -34,26 +34,24 @@ module.exports = {
     signin: async function(req, res) {
         const email = req.body.email
         const password = req.body.password
-
+        console.log('signin...');
         if (email == "" || password == "") {
-            return res.status(400).json({ 'error': 'Missingparameters'});
+            return res.status(400).json({ 'error': 'Missingparameters' });
         }
 
         MongoClient.connect(uriDatabase, async function(err, db) {
             let dbo = db.db("eloquence");
-            let myobj = { email: req.body.email };
-            let user = await dbo.collection("users").findOne(myobj);
+            let email = { email: req.body.email };
+            let user = await dbo.collection("users").findOne(email);
             if (user == null) {
-                return res.status(401).json({ 'error': 'User incorrect'});
+                return res.status(401).json({ 'error': 'User incorrect' });
             }
             const compare = await bcrypt.compare(req.body.password, user.password);
             if (!compare) {
-                return res.status(401).json({ 'error': 'Password incorrect'});
+                return res.status(401).json({ 'error': 'Password incorrect' });
             }
-            let token = jwt.sign(
-                { userId: user._id },
-                '4E8CE938D1B11E5DCFC3717DC37FC',
-                { expiresIn: '24h' }
+            let token = jwt.sign({ userId: user._id },
+                '4E8CE938D1B11E5DCFC3717DC37FC', { expiresIn: '24h' }
             );
             global.userToken = token;
             res.json({ 'auth': token });
@@ -69,18 +67,18 @@ module.exports = {
     //     var userId = -1;
     //     var token = module.exports.parseAuthorization(authorization);
     //      if(token != null){
-             
+
     //          try {
     //              var jwtToken =jwt.verify(token, JWT_SIGN_SECRET);
-                
+
     //              if(jwtToken != null)
     //              userId = jwtToken.userId;
     //          }catch (err) { 
     //              console.log(err)
     //          }
-             
+
     //      } 
-         
+
     //      return userId;
     // }
 }
