@@ -1,3 +1,4 @@
+
 const express = require("express");
 const app = express();
 
@@ -57,7 +58,7 @@ const run = async() => {
     }
 };
 
-const getTranscriptionDetails = async() => {
+module.exports.getTranscriptionDetails = async() => {
     try {
         const data = await client.send(new GetTranscriptionJobCommand(params));
         const status = data.TranscriptionJob.TranscriptionJobStatus;
@@ -71,8 +72,43 @@ const getTranscriptionDetails = async() => {
                     file.close();
                     let testFile = fs.readFileSync('./test.json');
                     let getTranscribe = JSON.parse(testFile);
-                    console.log(getTranscribe.results.transcripts[0]['transcript']);
+                    var trancription = getTranscribe.results.transcripts[0]['transcript']
+                    var itemslength = getTranscribe.results.items.length
+                    //console.log(itemslength)
+
+
+                    //console.log(getTranscribe.results.transcripts[0]['transcript']);
+
+
+                    const compterMot= async() => {
+
+                        var nombre = 0;
+                        var split = trancription.split(' ');
+                        for (var i = 0; i < split.length; i++)
+                        {
+                            if (split[i] !== "")
+                            {
+                                nombre += 1;
+                            }
+                        }
+                        console.log("il y a "+nombre+" mots")
+                        var time = getTranscribe.results.items[nombre]['end_time']
+                        console.log(time)
+                        var motmin = (nombre)/time
+                        var finalement = motmin.toFixed(2)
+                        if (finalement> 3 ){
+                            console.log(finalement+" mot par seconde votre est débit est légérement rapide pensé a prendre votre temps pour être bien audible")
+                        }else if (finalement<2){
+                            console.log(finalement+" mot par seconde votre débit est légérement inférieur vous risquer d'endormir votre oratoir pensé à rythmé votre discours ")
+                        }else {
+                            console.log(finalement + " mot par seconde vous avez un bon rythme bravo")
+                        }
+                    };
+                    //compterMot();
+
+
                 });
+
             });
 
 
@@ -82,17 +118,23 @@ const getTranscriptionDetails = async() => {
             console.log("In Progress...");
             getTranscriptionDetails();
         }
+
     } catch (err) {
         console.log("Error", err);
+        return '';
     }
+
 };
+
 
 console.log("run");
 run();
 
 
+
 require("./toolBox/auth");
 require("./globales");
+const {getTranscriptionDetails} = require("./index");
 
 
 app.use(cors({
@@ -131,3 +173,4 @@ app.post('/users/signin', (req, res) => {
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
 });
+
