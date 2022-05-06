@@ -87,8 +87,8 @@ const getTranscriptionDetails = async() => {
     }
 };
 
-console.log("run");
-run();
+// console.log("run");
+// run();
 
 
 require("./toolBox/auth");
@@ -105,8 +105,27 @@ app.get('/', (req, res) => {
     res.send("Hello World!");
 });
 
-app.post('/test', (req, res) => {
+app.post('/test', async(req, res) => {
     console.log('reçu...');
+    let bytes = req.body.bytes;
+    let blobUrl = req.body.blobUrl;
+    console.log('blob : ' + blobUrl);
+    console.log(bytes);
+
+    var callback = function() {
+        console.log('toto');
+    }
+
+    const data = new Uint8Array(Buffer.from(bytes));
+    fs.writeFile('audio.wav', data, callback);
+    let fileAudio = fs.readFile('audio.wav', 'utf8', (err, data) => {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log(data);
+        }
+    });
+    console.log(fileAudio);
 
 });
 
@@ -131,3 +150,7 @@ app.post('/users/signin', (req, res) => {
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
 });
+
+function sendAnalysis(analysis) {
+
+}
