@@ -42,6 +42,7 @@ const s3 = new AWS.S3({
     secretAccessKey: AWS_SECRET_KEY,
 });
 
+
 const fileName = 'salut.wav';
 
 const uploadFile = () => {
@@ -115,8 +116,7 @@ const getTranscriptionDetails = async() => {
     }
 };
 
-// console.log("run");
-run();
+// run();
 
 
 require("./toolBox/auth");
