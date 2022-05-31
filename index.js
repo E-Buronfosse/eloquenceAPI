@@ -3,6 +3,7 @@ const app = express();
 
 const https = require('https'); // or 'https' for https:// URLs
 const fs = require('fs');
+var createBuffer = require('audio-buffer-from');
 
 
 const port = 3000;
@@ -12,6 +13,8 @@ const fetch = require('cross-fetch');
 var bodyParser = require("body-parser");
 const { urlencoded } = require("express");
 
+const AWS = require('aws-sdk')
+
 const userCtrl = require("./controllers/userCtrl");
 const auth = require("./toolBox/auth");
 
@@ -19,6 +22,7 @@ const auth = require("./toolBox/auth");
 //aws
 const { TranscribeClient, StartTranscriptionJobCommand, GetTranscriptionJobCommand } = require("@aws-sdk/client-transcribe");
 const { S3, PutObjectCommand } = require("@aws-sdk/client-s3");
+const { allowedNodeEnvironmentFlags } = require("process");
 
 
 const AWS_REGION = "eu-west-1";
@@ -32,6 +36,30 @@ const config = {
         secretAccessKey: AWS_SECRET_KEY,
     },
 };
+
+const s3 = new AWS.S3({
+    accessKeyId: AWS_ACCESS_KEY,
+    secretAccessKey: AWS_SECRET_KEY,
+});
+
+const fileName = 'salut.wav';
+
+const uploadFile = () => {
+    fs.readFile(fileName, (err, data) => {
+        if (err) throw err;
+        const params = {
+            Bucket: 'test-aws-translate-eloquence', // pass your bucket name
+            Key: 'salut.wav', // file will be saved as testBucket/contacts.csv
+            Body: data,
+        };
+        s3.upload(params, function(s3Err, data) {
+            if (s3Err) throw s3Err
+            console.log(data)
+        });
+    });
+};
+
+//uploadFile();
 
 const client = new TranscribeClient(config);
 
@@ -88,12 +116,11 @@ const getTranscriptionDetails = async() => {
 };
 
 // console.log("run");
-// run();
+run();
 
 
 require("./toolBox/auth");
 require("./globales");
-
 
 app.use(cors({
     credentials: true
@@ -112,22 +139,21 @@ app.post('/test', async(req, res) => {
     console.log('blob : ' + blobUrl);
     console.log(bytes);
 
+
     var callback = function() {
         console.log('toto');
     }
 
-    const data = new Uint8Array(Buffer.from(bytes));
-    fs.writeFile('audio.wav', data, callback);
-    let fileAudio = fs.readFile('audio.wav', 'utf8', (err, data) => {
+    let fileAudio = fs.writeFileSync('audio.wav', Buffer.from(bytes), (err, data) => {
         if (err) {
             console.log(err);
         } else {
             console.log(data);
         }
     });
-    console.log(fileAudio);
-
+    res.send('test réponse bien reçue');
 });
+
 
 app.get('/users/tokenTest', (req, res) => {
     let hasValidToken = auth.checkToken(req, res);
@@ -151,6 +177,4 @@ app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
 });
 
-function sendAnalysis(analysis) {
-
-}
+function sendAnalysis(analysis) {}
