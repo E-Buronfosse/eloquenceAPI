@@ -33,7 +33,7 @@ jobs:
       # Installs eslint
       - name: Install eslint
         run: npm install
-      # Runs eslint
-      - name: Run eslint
-        run: npx eslint .
+      # # Runs eslint
+      # - name: Run eslint
+      #   run: npx eslint .
 
