@@ -36,7 +36,7 @@ jobs:
       # # Runs eslint
       # - name: Run eslint
       #   run: npx eslint .
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           # Disabling shallow clone is recommended for improving relevancy of reporting
           fetch-depth: 0
