@@ -32,7 +32,7 @@ jobs:
         run: mocha
       # Installs eslint
       - name: Install eslint
-        run: npm install --global eslint@7.12.0 eslint-config-standard eslint-plugin-import eslint-plugin-n eslint-plugin-promise
+        run: npm install
       # Runs eslint
       - name: Run eslint
         run: npx eslint .
