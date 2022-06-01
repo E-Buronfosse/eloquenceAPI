@@ -30,10 +30,10 @@ jobs:
       # Runs mocha
       - name: Run mocha
         run: mocha
-      # Installs eslint
+      # Installs eslint and all packages
       - name: Install eslint
         run: npm install
-      # # Runs eslint
-      # - name: Run eslint
-      #   run: npx eslint .
+      # Runs eslint
+      - name: Run eslint
+        run: npx eslint .
 
