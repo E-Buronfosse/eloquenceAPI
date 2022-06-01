@@ -33,7 +33,7 @@ jobs:
         run: mocha
       # Installs eslint
       - name: Install eslint
-        run: npm install --global eslint
+        run: npm install --global eslint@7.12.0
       # Runs eslint
       - name: Run eslint
         run: npx eslint .
