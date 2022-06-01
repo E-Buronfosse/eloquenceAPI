@@ -28,6 +28,9 @@ jobs:
        # Runs a single command using the runners shell
       - name: Install mocha
         run: npm install --global mocha
-      # Runs a single command using the runners shell
+      # Runs mocha
       - name: Run mocha
         run: mocha
+      # npm install --global eslint
+      - name: Run eslint
+        run: npx eslint
