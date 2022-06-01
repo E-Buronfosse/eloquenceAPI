@@ -25,12 +25,15 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
       
-       # Runs a single command using the runners shell
+       # Installs mocha
       - name: Install mocha
         run: npm install --global mocha
       # Runs mocha
       - name: Run mocha
         run: mocha
-      # npm install --global eslint
+      # Installs eslint
+      - name: Install eslint
+        run: npm install --global eslint
+      # Runs eslint
       - name: Run eslint
         run: npx eslint
