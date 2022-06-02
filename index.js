@@ -139,6 +139,7 @@ app.post('/test', async(req, res) => {
     let blobUrl = req.body.blobUrl;
     console.log('blob : ' + blobUrl);
     console.log(bytes);
+    console.log('test ajout sonacube');;
 
 
     var callback = function() {
