@@ -1,0 +1,7 @@
+organization=e-buronfosse
+projectKey=E-Buronfosse_eloquenceAPI
+serverUrl=https://sonarcloud.io
+serverVersion=8.0.0.29411
+dashboardUrl=https://sonarcloud.io/dashboard?id=E-Buronfosse_eloquenceAPI
+ceTaskId=AYEkn_8TfnY-q5nJnCpo
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AYEkn_8TfnY-q5nJnCpo
