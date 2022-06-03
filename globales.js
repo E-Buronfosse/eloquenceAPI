@@ -1,2 +1,2 @@
-global.uriDatabase = "mongodb://127.0.0.1:27017/?retryWrites=true&w=majority";
-global.userToken;
+global.uriDatabase = 'mongodb://127.0.0.1:27017/?retryWrites=true&w=majority'
+global.userToken
