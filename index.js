@@ -5,21 +5,17 @@ const https = require('https') // or 'https' for https:// URLs
 const fs = require('fs')
 const createBuffer = require('audio-buffer-from')
 
-<<
-<< << < HEAD
 const port = 3000
 const cors = require('cors')
 const axios = require('axios')
 const fetch = require('cross-fetch')
 const bodyParser = require('body-parser')
-const { urlencoded } = require('express') ===
-    === =
-    const cors = require("cors");
+const { urlencoded } = require('express')
+const cors = require("cors");
 const axios = require("axios");
 const fetch = require('cross-fetch');
 var bodyParser = require("body-parser");
-const { urlencoded } = require("express"); >>>
->>> > c109acff4611d1f79f015d20e673689151af6e86
+const { urlencoded } = require("express");
 
 const AWS = require('aws-sdk')
 
