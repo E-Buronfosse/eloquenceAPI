@@ -5,8 +5,6 @@ const https = require('https'); // or 'https' for https:// URLs
 const fs = require('fs');
 var createBuffer = require('audio-buffer-from');
 
-
-const port = 3000;
 const cors = require("cors");
 const axios = require("axios");
 const fetch = require('cross-fetch');
@@ -174,8 +172,7 @@ app.post('/users/signup', (req, res) => {
 app.post('/users/signin', (req, res) => {
     userCtrl.signin(req, res)
 });
-
-app.listen(port, () => {
+app.listen(process.env.PORT || 3000, () => {
     console.log(`Example app listening on port ${port}`);
 });
 
