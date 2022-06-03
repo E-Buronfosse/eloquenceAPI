@@ -173,7 +173,7 @@ app.post('/users/signin', (req, res) => {
     userCtrl.signin(req, res)
 });
 app.listen(process.env.PORT || 3000, () => {
-    console.log(`Example app listening on port ${port}`);
+    console.log(`Example app listening on port`);
 });
 
 function sendAnalysis(analysis) {}
