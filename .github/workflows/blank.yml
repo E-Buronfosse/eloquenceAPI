@@ -1,6 +1,6 @@
 # # This is a basic workflow to help you get started with Actions
 
-# name: CI
+name: Linter
 
 # # Controls when the workflow will run
 on:
@@ -19,12 +19,6 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-       # Installs mocha
-      - name: Install mocha
-        run: npm install --global mocha
-      # Runs mocha
-      - name: Run mocha
-        run: mocha
       # Installs eslint and all packages
       - name: Install eslint
         run: npm install
