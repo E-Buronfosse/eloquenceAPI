@@ -5,12 +5,20 @@ const https = require('https') // or 'https' for https:// URLs
 const fs = require('fs')
 const createBuffer = require('audio-buffer-from')
 
+<<<<<<< HEAD
 const port = 3000
 const cors = require('cors')
 const axios = require('axios')
 const fetch = require('cross-fetch')
 const bodyParser = require('body-parser')
 const { urlencoded } = require('express')
+=======
+const cors = require("cors");
+const axios = require("axios");
+const fetch = require('cross-fetch');
+var bodyParser = require("body-parser");
+const { urlencoded } = require("express");
+>>>>>>> c109acff4611d1f79f015d20e673689151af6e86
 
 const AWS = require('aws-sdk')
 
@@ -162,11 +170,19 @@ app.post('/users/signup', (req, res) => {
 })
 
 app.post('/users/signin', (req, res) => {
+<<<<<<< HEAD
   userCtrl.signin(req, res)
 })
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
+=======
+    userCtrl.signin(req, res)
+});
+app.listen(process.env.PORT || 3000, () => {
+    console.log(`Example app listening on port`);
+});
+>>>>>>> c109acff4611d1f79f015d20e673689151af6e86
 
 function sendAnalysis (analysis) {}
